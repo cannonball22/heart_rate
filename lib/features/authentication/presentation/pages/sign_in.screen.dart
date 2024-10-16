@@ -79,8 +79,15 @@ class _SignInScreenState extends State<SignInScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
+                      String pattern =
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+                      RegExp regex = RegExp(pattern);
+                      if (!regex.hasMatch(value)) {
+                        return 'Please enter a valid email';
+                      }
                       return null;
                     },
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(
                     height: 16,

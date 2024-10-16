@@ -50,6 +50,7 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
     });
 
     scanSubscription = FlutterBluePlus.scanResults.listen((results) {
+      print("Scannning!!! ${results}");
       if (mounted) {
         setState(() {
           scanResults = results;
@@ -87,6 +88,7 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: const Text(
           'Available Bluetooth Devices',
@@ -110,18 +112,21 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
                     device.platformName.isNotEmpty
                         ? device.platformName
                         : 'Unknown Device',
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                   subtitle: Text(
                     device.remoteId.toString(),
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                   trailing: selectedDevice?.remoteId == device.remoteId
                       ? const Icon(
                           Icons.check_circle,
                           color: Colors.green,
                         )
-                      : const Icon(Icons.bluetooth, color: Colors.white),
+                      : Icon(Icons.bluetooth,
+                          color: Theme.of(context).colorScheme.onSurface),
                   onTap: () {
                     connectToDevice(device);
                   },

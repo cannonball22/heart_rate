@@ -1,41 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- Tell Google Play Store that your app uses Bluetooth LE
- Set android:required="true" if bluetooth is necessary -->
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
+         Set android:required="true" if bluetooth is necessary -->
+    <uses-feature android:name="android.hardware.bluetooth_le" />
 
     <!-- New Bluetooth permissions in Android 12
     https://developer.android.com/about/versions/12/features/bluetooth-permissions -->
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--    Zego-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!-- legacy for Android 11 or lower -->
-    <!--    <uses-permission-->
-    <!--        android:name="android.permission.BLUETOOTH"-->
-    <!--        android:maxSdkVersion="30" />-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <!-- legacy for Android 9 or lower -->
-    <uses-permission
-        android:name="android.permission.ACCESS_COARSE_LOCATION"
-        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="SleepPulse">
         <activity
             android:name=".MainActivity"
