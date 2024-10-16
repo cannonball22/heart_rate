@@ -1,13 +1,12 @@
 //t2 Core Packages Imports
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:heart_rate/features/authentication/presentation/pages/sign_in.screen.dart';
 import 'package:heart_rate/features/authentication/presentation/pages/sign_up.screen.dart';
 
 import '../../../../presentation/widgets/primary_button.dart';
 import '../../../../presentation/widgets/secondary_button.dart';
 
-//t2 Dependancies Imports
+//t2 Dependencies Imports
 //t3 Services
 //t3 Models
 //t1 Exports
@@ -52,14 +51,20 @@ class LandingScreen extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 58.0),
-                child: SvgPicture.asset(
-                  'assets/images/Watch app-pana 1.svg',
-                  width: double.infinity,
-                  alignment: Alignment.bottomCenter,
-                  // height: 334,
-                ),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 58.0),
+                  child: Image.asset(
+                    'assets/images/app_logo.png',
+                    width: double.infinity,
+                    alignment: Alignment.bottomCenter,
+                    // height: 334,
+                  )
+                  // SvgPicture.asset(
+                  //   'assets/images/Watch app-pana 1.svg',
+                  //   width: double.infinity,
+                  //   alignment: Alignment.bottomCenter,
+                  //   // height: 334,
+                  // ),
+                  ),
             ),
             const SizedBox(
               height: 42,

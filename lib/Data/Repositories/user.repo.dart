@@ -1,15 +1,15 @@
 import '../../core/Providers/FB Firestore/fbfirestore_repo.dart';
-import '../Model/Member/member.model.dart';
+import '../Model/App User/app_user.model.dart';
 
-class MemberRepo extends FirestoreRepo<Member> {
-  MemberRepo()
+class AppUserRepo extends FirestoreRepo<AppUser> {
+  AppUserRepo()
       : super(
           'Users',
         );
 
   @override
-  Member? toModel(Map<String, dynamic>? item) => Member.fromMap(item ?? {});
+  AppUser? toModel(Map<String, dynamic>? item) => AppUser.fromMap(item ?? {});
 
   @override
-  Map<String, dynamic>? fromModel(Member? item) => item?.toMap() ?? {};
+  Map<String, dynamic>? fromModel(AppUser? item) => item?.toMap() ?? {};
 }

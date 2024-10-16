@@ -115,9 +115,9 @@ class _SignInScreenState extends State<SignInScreen> {
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 User? user = await AuthService().signInWithEmailAndPassword(
-                    _formController.controller("email").text.trim(),
-                    _formController.controller("password").text,
-                    context);
+                  _formController.controller("email").text.trim(),
+                  _formController.controller("password").text,
+                );
                 if (user != null) {
                   Navigator.pushAndRemoveUntil(
                     context,

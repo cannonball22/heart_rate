@@ -4,7 +4,7 @@ class CardContainer extends StatelessWidget {
   final Widget? child;
   final String title;
   final String measuredValue;
-  final String measurementUnit;
+  final String? measurementUnit;
   final String? subtitle;
   final String? description;
   final Widget? actionButton;
@@ -16,7 +16,7 @@ class CardContainer extends StatelessWidget {
       this.child,
       required this.title,
       required this.measuredValue,
-      required this.measurementUnit,
+      this.measurementUnit,
       this.imagePath,
       this.icon,
       this.subtitle,
@@ -64,7 +64,7 @@ class CardContainer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    measurementUnit,
+                    measurementUnit ?? "",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 12,

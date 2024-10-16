@@ -1,8 +1,8 @@
 class HeartRate {
-  final String dayAcronym;
-  final int value;
+  final double time;
+  final double value;
 
   //
   //
-  HeartRate({required this.dayAcronym, required this.value});
+  HeartRate({required this.time, required this.value});
 }

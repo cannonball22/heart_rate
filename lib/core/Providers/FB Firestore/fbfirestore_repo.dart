@@ -134,7 +134,6 @@ class FirestoreRepo<T> {
     try {
       Map<String, dynamic>? r = await _firestore.readSingle(collectionId, id);
       if (r != null) {
-        print("R IS NOT NULL $r");
         return toModel(r);
       }
     } catch (e, s) {
