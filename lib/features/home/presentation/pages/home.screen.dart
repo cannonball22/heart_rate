@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               }
-              if (isConnectedSnapshot.data != null) {
+              if (isConnectedSnapshot.data == null) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(

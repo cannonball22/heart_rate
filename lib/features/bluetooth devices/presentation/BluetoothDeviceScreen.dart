@@ -25,6 +25,7 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
   @override
   void dispose() {
     // Stop scanning and cancel subscription when widget is disposed
+
     if (isScanning) {
       FlutterBluePlus.stopScan();
     }
@@ -32,7 +33,18 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
     super.dispose();
   }
 
-  void startScan() {
+  Future<void> startScan() async {
+    var isOn =
+        await FlutterBluePlus.adapterState.first == BluetoothAdapterState.on;
+    if (!isOn) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enable Bluetooth'),
+        ),
+      );
+      return;
+    }
+
     setState(() {
       isScanning = true;
     });
@@ -48,13 +60,12 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
     FlutterBluePlus.startScan(
         timeout: const Duration(seconds: 10), androidUsesFineLocation: true);
 
-    // Stop scanning after timeout
     Future.delayed(const Duration(seconds: 10), () {
       if (isScanning) {
         FlutterBluePlus.stopScan();
-        // setState(() {
+        setState(() {
           isScanning = false;
-        // });
+        });
       }
     });
   }
@@ -76,15 +87,10 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0F0F1A),
       appBar: AppBar(
-        foregroundColor: Colors.white,
         title: const Text(
           'Available Bluetooth Devices',
-          // style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color(0xff0F0F1A),
-        centerTitle: true,
       ),
       body: scanResults.isEmpty
           ? Center(
@@ -93,7 +99,8 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
                   : const Text(
                       'No devices found',
                       style: TextStyle(color: Colors.white),
-                    ))
+                    ),
+            )
           : ListView.builder(
               itemCount: scanResults.length,
               itemBuilder: (context, index) {
@@ -103,11 +110,11 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
                     device.platformName.isNotEmpty
                         ? device.platformName
                         : 'Unknown Device',
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   subtitle: Text(
                     device.remoteId.toString(),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   trailing: selectedDevice?.remoteId == device.remoteId
                       ? const Icon(
