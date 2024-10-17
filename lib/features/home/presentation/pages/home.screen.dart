@@ -321,8 +321,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       bloodOxygen =
                           int.tryParse(receivedValue[1].split(",")[0]) ?? 0;
                       // send notification
-                      NotificationService.showBasic(
-                          "oxygen level", "oxygen level is low");
+                      if(bloodOxygen < 92){
+                        NotificationService.showBasic(
+                            "oxygen level", "oxygen level is low");
+                      }
+
                       // title oxygen level
                       // oxygen level is low
                       heartBeat =
