@@ -29,12 +29,12 @@ dependencies:
   firebase_crashlytics: ^3.3.5
   form_controller: ^0.8.4
   google_fonts: ^4.0.4
-
+  awesome_notifications: ^0.9.3+1
   ## t2 -- Firebase
   firebase: ^9.0.2
   firebase_auth: ^4.5.0
   firebase_storage: ^11.2.1
-
+  permission_handler: ^11.3.1
   ## t2 -- Other Utilities
   flutter_blue_plus: ^1.33.4
 

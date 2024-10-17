@@ -11,6 +11,7 @@ import '../../../../Data/Model/App User/app_user.model.dart';
 import '../../../../Data/Model/Heart Rate/heart_rate.model.dart';
 import '../../../../Data/Repositories/user.repo.dart';
 import '../../../../core/Services/API/api_service.dart';
+import '../../../../core/Services/Notification/notification.service.dart';
 import '../../../../presentation/widgets/card_container.dart';
 import '../../../authentication/domain/repositories/AuthService.dart';
 import '../../../bluetooth devices/presentation/BluetoothDeviceScreen.dart';
@@ -321,6 +322,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       bloodOxygen =
                           int.tryParse(receivedValue[1].split(",")[0]) ?? 0;
                       // send notification
+                      NotificationService.showBasic(
+                          "oxygen level", "oxygen level is low");
                       // title oxygen level
                       // oxygen level is low
                       heartBeat =

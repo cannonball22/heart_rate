@@ -3,6 +3,7 @@ import 'package:heart_rate/util.dart';
 
 import 'core/Services/App/app.service.dart';
 import 'core/Services/Firebase/firebase.service.dart';
+import 'core/Services/Notification/notification.service.dart';
 import 'features/authentication/domain/repositories/AuthService.dart';
 import 'features/authentication/presentation/pages/landing.screen.dart';
 import 'features/home/presentation/pages/home.screen.dart';
@@ -11,6 +12,7 @@ import 'theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await App.initialize(AppEnvironment.dev);
+  await NotificationService.initialize();
 
   await FirebaseService.initialize();
   runApp(const MyApp());
