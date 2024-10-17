@@ -152,8 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
           "height": appUser?.height,
           "weight": appUser?.weight,
         });
-
-        return jsonEncode(response["predicted_sleep_quality"]);
+        return response["predicted_sleep_quality"];
       }
       return "Unknown";
     } catch (e) {
@@ -436,9 +435,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: predictedSleepQuality == "Bad"
                                   ? Colors.red
                                   : Colors.green,
-                              fontSize: 16,
+                              fontSize: 22,
                               fontWeight: FontWeight.w400,
-                              letterSpacing: 0.50,
                             ),
                             subtitle: "Future data",
                             description:

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class BluetoothDeviceScreen extends StatefulWidget {
   const BluetoothDeviceScreen({super.key});
@@ -34,23 +36,38 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
   }
 
   Future<void> startScan() async {
-    var isOn =
-        await FlutterBluePlus.adapterState.first == BluetoothAdapterState.on;
-    if (!isOn) {
+    // Check if location services are enabled
+    var locationEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!locationEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enable Bluetooth'),
-        ),
+        const SnackBar(content: Text('Please enable Location Services')),
       );
       return;
     }
 
+    // Check if Bluetooth is turned on
+    var adapterState = await FlutterBluePlus.adapterState.first;
+    if (adapterState != BluetoothAdapterState.on) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please turn on Bluetooth')),
+      );
+      return;
+    }
+
+    // Request location permission
+    if (await Permission.location.isDenied) {
+      await Permission.location.request();
+    }
+
+    // Start scanning for Bluetooth devices
     setState(() {
       isScanning = true;
     });
 
     scanSubscription = FlutterBluePlus.scanResults.listen((results) {
-      print("Scannning!!! ${results}");
+      for (var result in results) {
+        print("Device found: ${result.device.platformName} (${result.device.remoteId})");
+      }
       if (mounted) {
         setState(() {
           scanResults = results;
@@ -59,9 +76,11 @@ class BluetoothDeviceScreenState extends State<BluetoothDeviceScreen> {
     });
 
     FlutterBluePlus.startScan(
-        timeout: const Duration(seconds: 10), androidUsesFineLocation: true);
+        timeout: const Duration(seconds: 30),  // Extended timeout
+        androidUsesFineLocation: true
+    );
 
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 30), () {
       if (isScanning) {
         FlutterBluePlus.stopScan();
         setState(() {
