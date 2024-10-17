@@ -42,7 +42,7 @@ class CardContainer extends StatelessWidget {
         children: [
           Text(
             title,
-            style: textStyle ??
+            style:
                 TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 16,
@@ -60,7 +60,7 @@ class CardContainer extends StatelessWidget {
                 children: [
                   Text(
                     measuredValue,
-                    style: TextStyle(
+                    style:textStyle ?? TextStyle(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 22,
                       fontWeight: FontWeight.w400,
