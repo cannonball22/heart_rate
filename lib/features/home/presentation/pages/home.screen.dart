@@ -333,7 +333,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                       _sendPostRequest(heartBeat).then((result) {
                         // setState(() {
-                        predictedSleepQuality = result;
+                        if (result == "Good" || result == "Bad") {
+                          predictedSleepQuality = result;
+                        }
                         // });
                       });
                     }
@@ -430,6 +432,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           CardContainer(
                             title: 'Sleep quality',
                             measuredValue: predictedSleepQuality ?? "",
+                            textStyle: TextStyle(
+                              color: predictedSleepQuality == "Bad"
+                                  ? Colors.red
+                                  : Colors.green,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 0.50,
+                            ),
                             subtitle: "Future data",
                             description:
                                 "Based on your previous sleep quality scores we will predict how your sleep quality will be in the next couple of months.",

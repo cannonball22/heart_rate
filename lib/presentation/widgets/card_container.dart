@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CardContainer extends StatelessWidget {
   final Widget? child;
   final String title;
+  final TextStyle? textStyle;
   final String measuredValue;
   final String? measurementUnit;
   final String? subtitle;
@@ -21,7 +22,8 @@ class CardContainer extends StatelessWidget {
       this.icon,
       this.subtitle,
       this.description,
-      this.actionButton});
+      this.actionButton,
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +42,13 @@ class CardContainer extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.50,
-            ),
+            style: textStyle ??
+                TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.50,
+                ),
           ),
           const SizedBox(
             height: 16,
