@@ -32,14 +32,19 @@ class AuthService {
         content: Text(
           'Error: ${e.toString()}',
           style: TextStyle(
-            backgroundColor:
-                Theme.of(Contexter.currentContext).colorScheme.error,
+            color: Theme.of(context).colorScheme.onError,
           ),
         ),
-        backgroundColor: Theme.of(Contexter.currentContext).colorScheme.onError,
+        backgroundColor: Theme.of(context).colorScheme.error,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        padding: const EdgeInsets.all(16),
       );
 
-      ScaffoldMessenger.of(Contexter.currentContext).showSnackBar(snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
       return false;
     }

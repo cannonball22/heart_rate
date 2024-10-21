@@ -21,8 +21,8 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({
     Key? key,
   }) : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -426,17 +426,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     );
                     bool success = await AuthService()
                         .signUpWithEmailAndPassword(
-                            appUser: appUser,
-                            password:
-                                _formController.controller("password").text,
-                            context: context);
+                        appUser: appUser,
+                        password:
+                        _formController.controller("password").text,
+                        context: context);
                     if (success) {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute<void>(
                           builder: (BuildContext context) => const HomeScreen(),
                         ),
-                        (route) => false,
+                            (route) => false,
                       );
                     }
                   }

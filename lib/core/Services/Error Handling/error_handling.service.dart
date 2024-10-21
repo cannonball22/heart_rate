@@ -1,7 +1,6 @@
 //t1 --Imports
 //t2 Core Packages Imports
 //t3 Services
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:stack_trace/stack_trace.dart';
 
 import '../App/app.service.dart';
@@ -64,10 +63,10 @@ class ErrorHandlingService {
           //   stackTrace: stackTrace,
           // );
           if (App.env == AppEnvironment.prod) {
-            FirebaseCrashlytics.instance
-                .recordError(error, stackTrace, information: [
-              'Location: $location',
-            ]);
+            // FirebaseCrashlytics.instance
+            //     .recordError(error, stackTrace, information: [
+            //   'Location: $location',
+            // ]);
           }
           // present error
           // ErrorPresenter.present(
@@ -83,12 +82,6 @@ class ErrorHandlingService {
             level: Level.wtf,
             error: error,
           );
-          if (App.env == AppEnvironment.prod) {
-            FirebaseCrashlytics.instance
-                .recordError(error, stackTrace, information: [
-              'Location: $location',
-            ]);
-          }
           // _crashAndReport(
           //   error,
           //   stackTrace,

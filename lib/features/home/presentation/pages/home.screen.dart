@@ -321,30 +321,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       bloodOxygen =
                           int.tryParse(receivedValue[1].split(",")[0]) ?? 0;
                       // send notification
-                      if(bloodOxygen < 92){
+                      if (bloodOxygen < 92) {
                         NotificationService.showBasic(
                             "oxygen level", "oxygen level is low");
                       }
-
-                      // title oxygen level
-                      // oxygen level is low
                       heartBeat =
                           int.tryParse(receivedValue[1].split(",")[1]) ?? 0;
+
                       heartRateData.add(
                         HeartRate(
                           value: heartBeat.toDouble(),
                           time: heartRateData.length + 1,
                         ),
                       );
+
                       _sendPostRequest(heartBeat).then((result) {
-                        // setState(() {
                         if (result == "Good" || result == "Bad") {
                           predictedSleepQuality = result;
                         }
-                        // });
                       });
                     }
                   }
+
                   if (heartRateData.isNotEmpty) {
                     print(heartRateData.last.value);
                   } else {
