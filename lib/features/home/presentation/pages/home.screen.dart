@@ -46,13 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //
   //t2 --State
   List<HeartRate> heartRateData = [
-    HeartRate(time: 0, value: 72),
-    HeartRate(time: 1, value: 75),
-    HeartRate(time: 2, value: 70),
-    HeartRate(time: 3, value: 73),
-    HeartRate(time: 4, value: 76),
-    HeartRate(time: 5, value: 74),
-    HeartRate(time: 6, value: 71),
+
   ];
   AppUser? appUser;
 
@@ -316,6 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   List<String> receivedValue = [];
                   if (snapshot.data != null) {
+                    // print (Oximeter Value: 90 ,hart rate:88)
                     receivedValue = snapshot.data!.split(":");
                     if (receivedValue[0] == "Oximeter Value") {
                       bloodOxygen =
@@ -331,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       heartRateData.add(
                         HeartRate(
                           value: heartBeat.toDouble(),
-                          time: heartRateData.length + 1,
+                          time: heartRateData.length + 1,// تسجيل وقت النبض
                         ),
                       );
 
@@ -342,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     }
                   }
-
+// يشيك
                   if (heartRateData.isNotEmpty) {
                     print(heartRateData.last.value);
                   } else {

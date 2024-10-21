@@ -411,26 +411,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 title: 'Create account',
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    String userId = IdGeneratingService.generate();
 
-                    AppUser appUser = AppUser(
-                      id: '',
-                      fullName: _formController.controller("name").text,
-                      email: _formController.controller("email").text.trim(),
-                      weight: int.parse(_weightController.text),
-                      height: int.parse(_heightController.text),
-                      age: int.parse(_ageController.text),
-                      sleepDuration: int.parse(_sleepDurationController.text),
-                      isAthlete: selectedIsAthlete!,
-                      occupation: selectedOccupation!,
-                      physicalActivity: selectedPhysicalActivity!,
-                      stressLevel: selectedStressLevel!,
-                    );
                     bool success = await AuthService()
                         .signUpWithEmailAndPassword(
-                            appUser: appUser,
                             password:
                                 _formController.controller("password").text,
+                        fullName: _formController.controller("name").text,
+                        email: _formController.controller("email").text.trim(),
+                        weight: int.parse(_weightController.text),
+                        height: int.parse(_heightController.text),
+                        age: int.parse(_ageController.text),
+                        sleepDuration: int.parse(_sleepDurationController.text),
+                        isAthlete: selectedIsAthlete!,
+                        occupation: selectedOccupation!,
+                        physicalActivity: selectedPhysicalActivity!,
+                        stressLevel: selectedStressLevel!,
                             context: context);
                     if (success) {
                       Navigator.pushAndRemoveUntil(

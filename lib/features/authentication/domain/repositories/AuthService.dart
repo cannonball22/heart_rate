@@ -9,19 +9,39 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<bool> signUpWithEmailAndPassword({
-    required AppUser appUser,
+    required String fullName,
+    required String email,
+    required int weight,
+    required int height,
+    required int age,
+    required int sleepDuration,
+    required String isAthlete,
+    required String occupation,
+    required String physicalActivity,
+    required String stressLevel,
     required String password,
     required BuildContext context,
   }) async {
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-        email: appUser.email,
+        email: email,
         password: password,
       );
-      appUser.id = userCredential.user!.uid;
       await AppUserRepo().createSingle(
-        appUser,
+        AppUser(
+          id:userCredential.user!.uid ,
+          fullName:fullName,
+          email: email,
+          weight: weight,
+          height: height,
+          age: age,
+          sleepDuration: sleepDuration,
+          isAthlete: isAthlete,
+          occupation: occupation,
+          physicalActivity: physicalActivity,
+          stressLevel: stressLevel,
+        ),
         itemId: userCredential.user!.uid,
       );
 
